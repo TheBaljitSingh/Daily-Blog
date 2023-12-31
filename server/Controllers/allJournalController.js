@@ -18,4 +18,5 @@ exports.allJournal= async (req, res) =>{
         console.log(error.message);
 
     }
-}
+};
+

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import moment from "moment";
 
 import { Link } from "react-router-dom";
 
@@ -7,7 +8,6 @@ export default function Home(props) {
 
   const [article, setArticle] = useState([{}]);
 
-  // const [description, setDescription] = ([]);
 
   const fetctInfo = ()=>{
     return axios.get("api/alljournal")
@@ -52,11 +52,13 @@ export default function Home(props) {
 
           {article.slice().reverse().map((data,i) => 
 
-          // {const date = data.Date}
+          // <{var d = data.date()}/>
+          
             
             <div  key={i} className="bg-gray-100 mt-4" >
           <h1 className='text-2xl font-medium ml-2'>{data.title}</h1>
-          <p className="ml-2">{data.date}</p>
+          <p className="ml-2">{moment(data.date).format(`dddd, MMMM Do YYYY`)}</p>
+          {/* <p>{data.date}</p> */}
           <p  className='mt-1 ml-2'>{data.description}</p>
           </div>
             )}

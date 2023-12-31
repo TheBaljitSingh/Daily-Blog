@@ -1,6 +1,8 @@
 import axios from "axios";
 import {useState } from "react";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import { Link } from "react-router-dom";
+
 
 function Compose(){
 
@@ -43,7 +45,7 @@ function Compose(){
         <div>
             <div>
 
-            <nav className=' h-20 p-5 flex justify-between bg-yellow-400'>
+            <nav className=' h-20 p-5 flex justify-between bg-sky-400'>
             <div className='flex-1 flex justify-center mr-32'>
                 <a href="/#">DAILY JOURNAL</a>
             </div>
@@ -51,9 +53,9 @@ function Compose(){
 
             </div>
             <div className='flex-1 flex justify-center ml-auto space-x-5 '>
-                <ul>HOME</ul>
-                <ul>ABOUT US</ul>
-                <ul>CONTACT US</ul>
+            <ul><Link to={"/"}>HOME</Link></ul>
+              <ul><Link to={"/about"} >ABOUT US</Link></ul>
+              <ul><Link to={"/contact"}>CONTACT</Link></ul>
             </div>
             </nav>
 

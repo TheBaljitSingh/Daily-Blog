@@ -32,7 +32,7 @@ export default function Contact(props){
     return(
         <div>
         <div>
-        <nav className=' h-20 p-5 flex justify-between bg-yellow-400'>
+        <nav className=' h-20 p-5 flex justify-between bg-sky-400'>
             <div className='flex-1 flex justify-center mr-32'>
               <a href="/#">APNA BLOG</a>
             </div>
@@ -47,7 +47,6 @@ export default function Contact(props){
           </nav>
 
           <div className='ml-60 mt-8 w-3/4'>
-            {console.log(props.title)}
             <h1 className='text-2xl font-medium'>{props.title}</h1>
           </div>
 
@@ -62,7 +61,7 @@ export default function Contact(props){
                         <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
                     </svg>
                   </span>
-                  <input  type="text" id="name" onChange={(e)=>{setName(e.target.value)}} class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  " placeholder="your name"/>
+                  <input  type="text" id="name" onChange={(e)=>{setName(e.target.value)}} class="bg-opacity-20 rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  " placeholder="your name"/>
                 </div>
                 <label for="input-group-1" class="block mb-2 text-sm font-medium text-gray-900 ">Email</label>
                 <div class="relative mb-2">
@@ -72,15 +71,15 @@ export default function Contact(props){
                         <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"/>
                     </svg>
                   </div>
-                  <input type="email" onChange={(e)=>{setEmail(e.target.value)}} id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  " placeholder="your-name@email.com"/>
+                  <input type="email" onChange={(e)=>{setEmail(e.target.value)}} id="email" class="bg-opacity-20 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  " placeholder="your-name@email.com"/>
                   
                   
                 </div>
                 <label for="input-group-1" class="block mb-2 text-sm font-medium text-gray-900 ">Message</label>
-                <textarea id="message" onChange={(e)=>{setMessage(e.target.value)}} rows="10" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Write your Descricption here..."></textarea>
+                <textarea id="message"  onChange={(e)=>{setMessage(e.target.value)}} rows="10" class=" bg-opacity-20 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Write your Descricption here..."></textarea>
                 
                 <div className=" relative mt-2">
-                <button type="submit" class="px-5 py-3 text-base font-medium text-center text-white bg-gray-500 rounded-lg hover:bg-gray-700 outline-none ">Send</button>
+                <button type="submit" class="bg-opacity-70  px-5 py-3 text-base font-medium text-center text-white bg-gray-500 rounded-lg hover:bg-gray-700 outline-none ">Send</button>
 
                 </div>
 

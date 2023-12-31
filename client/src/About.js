@@ -8,7 +8,7 @@ export default function About(props){
     return(
         <div>
         <div>
-        <nav className=' h-20 p-5 flex justify-between bg-yellow-400'>
+        <nav className=' h-20 p-5 flex justify-between bg-sky-400'>
             <div className='flex-1 flex justify-center mr-32'>
               <a href="/#">APNA BLOG</a>
             </div>

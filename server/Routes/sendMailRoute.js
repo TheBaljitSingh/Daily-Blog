@@ -35,7 +35,7 @@ router.route("/send-mail").post((req, res)=>{
                 from: `"User" <${email}>`,
                 to: "baljitsingh692002@gmail.com",
                 subject: `From: ${name}`,
-                text: ` Message: ${message}`,
+                text: ` Name: ${name}\n Email: ${email}\n Message: ${message}`,
     
             });
             res.status(200).json({

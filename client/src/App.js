@@ -10,17 +10,8 @@ import React from 'react';
 import Dashboard from "./Dashboard";
 
 
-export default function App(){
 
-  const [isLoggedIn, setisLoggedIn] = useState(null);
-
-  const logIn = ()=>{
-    setisLoggedIn(true);
-  }
-  const logOut = ()=>{
-    setisLoggedIn(false);
-  }
-
+export default function App({isUser}){
 
 
   return (
@@ -31,8 +22,9 @@ export default function App(){
          <Route  path="/compose" element={<Compose/>} />
          <Route  path="/about" element={<About title="ABOUT" />} />
          <Route  path="/contact" element={<Contact title="CONTACT" />} />
-         <Route path="/Dashboard" 
-         element={<Protected isLoggedIn={isLoggedIn}><Dashboard/></Protected>}/>
+         {/* <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} /> */}
+         
+
 
        </Routes>
      </BrowserRouter>

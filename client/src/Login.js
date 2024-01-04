@@ -10,7 +10,7 @@ import { redirect } from "react-router-dom";
 
 
 
-export default function Login(){
+export default function Login({childred}){
 
 
     const navigate = useNavigate();
@@ -30,6 +30,17 @@ export default function Login(){
     const handleview = ()=>{
        setLoginPage(!loginPage);
     }
+
+        const handleLoginCheck = ()=>{
+
+            setTimeout(()=>{
+                handleLogin();
+
+            },3000);
+
+            return ()=> clearTimeout();
+
+        }
     
 
     useEffect(()=>{
@@ -59,26 +70,31 @@ export default function Login(){
         e.preventDefault();
         setEmail("");
         setPassword("");
-        console.log("logged in successfully");
+        // console.log("logged in successfully");
 
         await axios.post("api/login",{email, password})
         .then(res =>{
             if(res.status==200){
                 console.log("login hua");
+
+                const authToken = res.data.token;
+                console.log(authToken);
+                
                 Swal.fire({
                     title:"wow!",
                     text:"successfully Logged In",
                     icon:"success"
                 });
 
-                const redirect = async ()=>{
-                    console.log("Redirected");
+                navigate('Dashboard');
 
-                    await redirect("/login");
+                // handleLoginCheck();
 
-                }
-
-               redirect();        
+            //     const redirect = async ()=>{
+            //         console.log("Redirected");
+            //         await redirect("/login");
+            //     }
+            //    redirect();        
 
             }
         })

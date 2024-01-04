@@ -12,25 +12,39 @@ import Dashboard from "./Dashboard";
 
 
 
-export default function Home(props) {
+// export default function Home
 
-  // const [islogin, set]
-
-  const isLoggedIn = false;
+export default function Home() {
 
 
+  // const isLoggedIn = false;
+//Login Component pe agar user login ho gya to Ye Home component ka State update karke fir se render karna hoga
+// to next time Dashboard wala render hoga
 
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
-  if(isLoggedIn){
-    return (
-      <Dashboard {...props} />
-        
-    );
-  }else{
-    return (
-      <Login/>
-    )
+  const handleLogin = ()=>{
+    setIsUserLoggedIn(true);
   }
+
+  return(
+    <div>
+      {isUserLoggedIn?(<Dashboard/>):(<Login handleLogin={handleLogin} />)}
+    </div>
+  )
+
+
+
+  // if(isLoggedIn){
+  //   return (
+  //     <Dashboard {...props} />
+        
+  //   );
+  // }else{
+  //   return (
+  //     <Login/>
+  //   )
+  // }
     
   }
 

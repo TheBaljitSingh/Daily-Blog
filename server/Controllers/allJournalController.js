@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const post = require("../models/postModel");
+const post = require("../models/postsModel");
 
 
 exports.allJournal= async (req, res) =>{

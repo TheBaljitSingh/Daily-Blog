@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaLinkedin } from "react-icons/fa";
+import Nav from "./Nav";
 
 
 
@@ -8,26 +9,14 @@ export default function About(props){
     return(
         <div>
         <div>
-        <nav className=' h-20 p-5 flex justify-between bg-sky-400'>
-            <div className='flex-1 flex justify-center mr-32'>
-              <a href="/#">APNA BLOG</a>
-            </div>
-            <div className='mx-32'>
-  
-            </div>
-            <div className='flex-1 flex justify-center ml-auto space-x-5 '>
-              <ul><Link to={"/"}>HOME</Link></ul>
-              <ul><Link to={"/about"} >ABOUT US</Link></ul>
-              <ul><Link to={"/contact"}>CONTACT</Link></ul>
-            </div>
-          </nav>
+        <Nav/>
 
           <div className='ml-60 mt-8 w-3/4'>
             <h1 className='text-2xl font-medium'>{props.title}</h1>
 
           </div>
 
-          <div className="ml-60 mr-48 mt-8 ">
+          <div className="ml-60 mr-48 mt-8 font-medium ">
             <p>Hi, My Name is Baljit Singh.i'm a Full Stack Web Developer. persuing my engineering in Information and Technology.</p>
             <p>Currently exploring my Technical Skills to solve the Problems which we are facing in our daily life.</p>
             <p>Feel free to contact me for any collaboration for solving a particular problem.I also worked with Tech projects of my friends. for more checkout my Linkdin </p>

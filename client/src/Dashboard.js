@@ -1,18 +1,45 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import moment from "moment";
 import { FaRegCircleUser } from "react-icons/fa6";
-import Show from "./Show";
+import { Link } from "react-router-dom";
+import Swal from 'sweetalert2';
+import store from "./store";
+import { useDispatch, useSelector } from 'react-redux';
+import Nav from "./Nav";
 
-import {Routes, Route,  Link } from "react-router-dom";
 
 export default function Dashboard(props){
 
     const [isDropdown, setisDropdown] = useState(true);
     const [article, setArticle] = useState([{}]);
   
-    console.log(isDropdown);
+    // important! jab api call hoga logout ke liyea tab response ke hisab se loginBtn state ko update karna hai. tab jake page render hoga home page ke liyea.
+    const dispatch = useDispatch();
+    const {isLogin} = useSelector(state=>state.custom);
   
+    const logoutBtn = ()=>{
+      axios.get("api/logout")
+      .then(res=>{
+        if(res.status==200){
+          console.log("server se logout hua");
+          Swal.fire({
+            title:"ok!",
+            text:"successfully Sign Out",
+            icon:"success"
+        });
+
+        }
+      })
+
+
+      store.dispatch({
+        type: "checkLogout",
+        payload:false,
+      })
+    }
+  
+
+    
     const handleClick = ()=>{
         setisDropdown(!isDropdown);
 
@@ -41,19 +68,7 @@ export default function Dashboard(props){
         <div className="App">
         
         <div >
-          <nav className=' h-20 p-5 flex justify-between bg-sky-400'>
-            <div className='flex-1 flex justify-center mr-32'>
-              <a href="/#">APNA BLOG </a>
-            </div>
-            <div className='mx-32'>
-  
-            </div>
-            <div className='flex-1 flex justify-center ml-auto space-x-5 '>
-            <ul><Link to={"/"}>HOME</Link></ul>
-              <ul><Link to={"/about"} >ABOUT US</Link></ul>
-              <ul><Link to={"/contact"}>CONTACT</Link></ul>
-            </div>
-          </nav>
+          <Nav/>
           
           {/* profile wala main div */}
           <div className=" relative hover:cursor-pointer ">
@@ -63,7 +78,7 @@ export default function Dashboard(props){
             <button onClick={handleClick}  id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName" className=" ml-4 flex items-center text-sm pe-1 font-medium text-gray-900 rounded-full  hover:cursor-pointer hover:text-gray-600 focus:ring-gray-100" type="button">
             <span class="sr-only">Open user menu</span>
               <div>
-              < FaRegCircleUser  size={30} />
+              <FaRegCircleUser  size={30} />
               </div>
             <div className="ml-2" >Baljit Singh</div>
             <svg class=" w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -89,7 +104,7 @@ export default function Dashboard(props){
                   
                 </ul>
                 <div class="py-2">
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">Sign out</a>
+                  <a onClick={logoutBtn} href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">Sign out</a>
                 </div>
             </div>:null }
             <div>

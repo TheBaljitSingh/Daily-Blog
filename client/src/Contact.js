@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Swal from 'sweetalert2'
 import { useState } from "react";
+import Nav from "./Nav";
 
 
 export default function Contact(props){
@@ -32,29 +33,17 @@ export default function Contact(props){
     return(
         <div>
         <div>
-        <nav className=' h-20 p-5 flex justify-between bg-sky-400'>
-            <div className='flex-1 flex justify-center mr-32'>
-              <a href="/#">APNA BLOG</a>
-            </div>
-            <div className='mx-32'>
-  
-            </div>
-            <div className='flex-1 flex justify-center ml-auto space-x-5 '>
-              <ul><Link to={"/"}>HOME</Link></ul>
-              <ul><Link to={"/about"} >ABOUT US</Link></ul>
-              <ul><Link to={"/contact"}>CONTACT</Link></ul>
-            </div>
-          </nav>
+        <Nav/>
 
           <div className='ml-60 mt-8 w-3/4'>
             <h1 className='text-2xl font-medium'>{props.title}</h1>
           </div>
 
-          <div className="ml-60 mt-8 w-3/4">
+          <div className="ml-60 mt-8 w-3/4 ">
 
-            <form onSubmit={handleSubmit} >
+            <form  onSubmit={handleSubmit} >
                
-                <label for="website-admin" class="block mb-2 text-sm font-medium text-gray-900 ">Name</label>
+                <label for="website-admin" class="font-medium block mb-2 text-sm font-medium text-gray-900 ">Name</label>
                 <div class="flex mb-2">
                   <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md ">
                     <svg class="w-4 h-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -79,7 +68,7 @@ export default function Contact(props){
                 <textarea id="message"  onChange={(e)=>{setMessage(e.target.value)}} rows="10" class=" bg-opacity-20 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Write your Descricption here..."></textarea>
                 
                 <div className=" relative mt-2">
-                <button type="submit" class="bg-opacity-70  px-5 py-3 text-base font-medium text-center text-white bg-gray-500 rounded-lg hover:bg-gray-700 outline-none ">Send</button>
+                <button type="submit" class="bg-slate-700-70  px-5 py-3 text-base font-medium text-center text-white rounded-lg  outline-none ">Send</button>
 
                 </div>
 

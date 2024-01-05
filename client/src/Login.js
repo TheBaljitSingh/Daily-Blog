@@ -1,8 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import {Routes, Route,  Link, useNavigate, Switch } from "react-router-dom";
+import {Link } from "react-router-dom";
 import Swal from 'sweetalert2';
-import { redirect } from "react-router-dom";
+// import { redirect } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import store from "./store";
+import Nav from "./Nav";
 
 
 
@@ -10,11 +13,11 @@ import { redirect } from "react-router-dom";
 
 
 
-export default function Login({childred}){
 
 
-    const navigate = useNavigate();
-
+export default function Login(){
+    
+ 
 
 
     const [loginPage, setLoginPage] = useState(false);
@@ -24,23 +27,13 @@ export default function Login({childred}){
     const [password, setPassword] = useState("");
     const [cpassword, setCpassword] = useState("");
 
-    console.log(email,password, cpassword);
 
 
     const handleview = ()=>{
        setLoginPage(!loginPage);
     }
 
-        const handleLoginCheck = ()=>{
-
-            setTimeout(()=>{
-                handleLogin();
-
-            },3000);
-
-            return ()=> clearTimeout();
-
-        }
+        
     
 
     useEffect(()=>{
@@ -49,20 +42,23 @@ export default function Login({childred}){
 
     },[])
     
-    // const redirect = ()=>{
-    //     const timeoutId = setTimeout(()=>{
-    //         console.log("Executed");
-    //         // navigate('/Dashboard');
-    //     },3000);
+  
 
-    //     return ()=> clearTimeout(timeoutId);
+    const dispatch = useDispatch();
+    const {isLogin} = useSelector(state=>state.custom);
+  
+    const loginBtn = ()=>{
+        console.log("login wala call hua");
+      store.dispatch({
+        type:"checkLogin",
+        payload: true,
+      })
+    };
+    
+  
+    
 
-    // }
 
-    // useEffect(()=>{
-    //     redirect();
-        
-    // },[navigate])
 
     
     
@@ -70,7 +66,6 @@ export default function Login({childred}){
         e.preventDefault();
         setEmail("");
         setPassword("");
-        // console.log("logged in successfully");
 
         await axios.post("api/login",{email, password})
         .then(res =>{
@@ -86,7 +81,17 @@ export default function Login({childred}){
                     icon:"success"
                 });
 
-                navigate('Dashboard');
+                loginBtn();
+                
+                
+
+
+
+
+
+                // navigate('Dashboard');
+
+                // response aa gya to yaha pe home ka state update karna hoga
 
                 // handleLoginCheck();
 
@@ -164,25 +169,35 @@ export default function Login({childred}){
     return (
         <div>
 
-        <nav className=' h-20 p-5 flex justify-between bg-sky-400'>
-            <div className='flex-1 flex justify-center mr-32'>
-              <a href="/#">APNA BLOG </a>
-            </div>
-            <div className='mx-32'>
-  
-            </div>
-            <div className='flex-1 flex justify-center ml-auto space-x-5 '>
-            <ul><Link to={"/"}>HOME</Link></ul>
-              <ul><Link to={"/about"} >ABOUT US</Link></ul>
-              <ul><Link to={"/contact"}>CONTACT</Link></ul>
-            </div>
-          </nav>
+        <Nav/>
 
+          <div className="flex flex-row w-screen">
+            <div className="w-1/2 flex  justify-center ">
+                <div className=" mt-12 ">
+                <h2 className="font-semibold text-xl ">Welcome to APNA BLOG! </h2>
+                <p className="text-xl font-medium mt-4" >Start your Blogging Journy Now.</p>
 
-        {loginPage?<section class="bg-gray-50 ">
-  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+                <div className="ml-4">
+                <h4 className="mt-1">Follow thest easy <span className="underline self-baseline cursor-s-resize	" >steps</span>:</h4>
+                <div className="mt-4 text-lg">
+                <li className="mt-">Login/Signup with your account</li>
+                <li className="mt-2">Go to Profile section </li>
+                <li className="mt-2">Then Compose Section</li>
+                <li className="mt-2">Write and click on Publish!</li>
+                <li className="mt-2"> All Done 🎉</li>
+                </div>
+                
+                </div>
+                
+            
+                </div>
+            </div>
+            <div className=" w-1/2">
+            {loginPage?
+        <section class=" ">
+    <div class=" flex flex-col items-center justify-between mx-auto my-12  px-6 py-8  md:h-screen lg:py-0">
       
-      <div class="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 ">
+      <div class=" w-full  bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 ">
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                   Login to your account
@@ -190,11 +205,11 @@ export default function Login({childred}){
               <form class="space-y-4 md:space-y-6" method="post" onSubmit={loginSubmit} >
                   <div>
                       <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
-                      <input required  type="email" value={email} onChange={(e) => setEmail(e.target.value)}  id="email" class="bg-gray-50 border border-gray-300 outline-none text-gray-900 sm:text-sm rounded-lg  focus:border-primary-600 block w-full p-2.5 " placeholder="name@company.com" />
+                      <input required id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}   class="bg-gray-50 border border-gray-300 outline-none text-gray-900 sm:text-sm rounded-lg  focus:border-primary-600 block w-full p-2.5 " placeholder="name@company.com" />
                   </div>
                   <div>
                       <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
-                      <input required type="password" value={password} onChange={(e) => setPassword(e.target.value)}  name="password" id="password" placeholder="••••••••" class="bg-gray-50 border outline-none border-gray-300 text-gray-900 sm:text-sm rounded-lg  focus:border-primary-600 block w-full p-2.5 " />
+                      <input required id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}  name="password" placeholder="••••••••" class="bg-gray-50 border outline-none border-gray-300 text-gray-900 sm:text-sm rounded-lg  focus:border-primary-600 block w-full p-2.5 " />
                   </div>
                   <div class="flex items-center justify-between">
                       <div class="flex items-start">
@@ -215,23 +230,23 @@ export default function Login({childred}){
           </div>
       </div>
   </div>
-</section>:
-<section class="bg-gray-50 ">
-  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        </section>:
+        <section  class=" ">
+  <div class=" flex flex-col items-center justify-center -my-4 px-6 py-8 mx-auto md:h-screen lg:py-0">
   
-      <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 ">
-          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+      <div class=" w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 ">
+          <div class=" p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                   Create and account
               </h1>
               <form class="space-y-4 md:space-y-6" method="post" onSubmit={signupSubmit}>
                  <div>
-                      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Your name</label>
-                      <input type="text" value={name} onChange={(e) => setName(e.target.value)} id="name" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 outline-none " placeholder="your name" required=""/>
+                      <label for="name" class="block mb-2 text-sm font-medium text-gray-900 ">Your name</label>
+                      <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 outline-none " placeholder="your name" required=""/>
                   </div>
                   <div>
                       <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
-                      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 outline-none " placeholder="name@gmail.com" required=""/>
+                      <input type="email"  value={email} onChange={(e) => setEmail(e.target.value)} id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 outline-none " placeholder="name@gmail.com" required=""/>
                   </div>
                   <div>
                       <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
@@ -239,7 +254,7 @@ export default function Login({childred}){
                   </div>
                   <div>
                       <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 ">Confirm password</label>
-                      <input type="confirm-password" id="cpassword" value={cpassword} onChange={(e)=>{setCpassword(e.target.value)}}  name="confirm-password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 outline-none block w-full p-2.5 " required=""/>
+                      <input type="confirm-password" id="confirm-password" value={cpassword} onChange={(e)=>{setCpassword(e.target.value)}}  name="confirm-password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 outline-none block w-full p-2.5 " required=""/>
                   </div>
                   <div class="flex items-start">
                       
@@ -253,7 +268,13 @@ export default function Login({childred}){
           </div>
       </div>
   </div>
-</section>}
+        </section>}
+        </div>
+        </div>
+
+      
+
+       
 
 
         </div>

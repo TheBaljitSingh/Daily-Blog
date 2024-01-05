@@ -2,6 +2,7 @@ import axios from "axios";
 import {useState } from "react";
 import Swal from 'sweetalert2';
 import { Link } from "react-router-dom";
+import Nav from "./Nav";
 
 
 function Compose(){
@@ -45,19 +46,7 @@ function Compose(){
         <div>
             <div>
 
-            <nav className=' h-20 p-5 flex justify-between bg-sky-400'>
-            <div className='flex-1 flex justify-center mr-32'>
-                <a href="/#">DAILY JOURNAL</a>
-            </div>
-            <div className='mx-32'>
-
-            </div>
-            <div className='flex-1 flex justify-center ml-auto space-x-5 '>
-            <ul><Link to={"/"}>HOME</Link></ul>
-              <ul><Link to={"/about"} >ABOUT US</Link></ul>
-              <ul><Link to={"/contact"}>CONTACT</Link></ul>
-            </div>
-            </nav>
+            <Nav/>
 
             <div className="ml-60 mt-16 w-3/4 ">
                 <form onSubmit={handleSubmit}>

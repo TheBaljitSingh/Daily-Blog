@@ -1,13 +1,13 @@
 
 
-import { BrowserRouter, Routes, Route,Switch } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Compose from "./Compose";
 import Home from "./Home";
 import Contact from "./Contact";
 
 import About from "./About";
 import React from 'react';
-import Dashboard from "./Dashboard";
+// import Dashboard from "./Dashboard";
 
 
 

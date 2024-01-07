@@ -13,6 +13,12 @@ const postsSchema = new mongoose.Schema({
     date:{
         type: Date,
         default: Date.now(),
+    },
+    user:{
+        id:{
+            type: mongoose.Schema.Types.ObjectId,
+            require: true
+        }
     }
 
 });

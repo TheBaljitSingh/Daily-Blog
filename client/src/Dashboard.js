@@ -46,10 +46,11 @@ export default function Dashboard(props){
   
     }
   
-    const fetctInfo = ()=>{
-      return axios.get("api/alljournal")
-            .then((response)=>setArticle(response.data))
-            .then(article.reverse());
+    const fetctInfo = async ()=>{
+      await axios.get("api/Journal")
+            .then((response)=>console.log(response.data[0].date))
+            // setArticle(response.data)
+            .then(article.reverse()) 
     }
   
   
@@ -67,15 +68,25 @@ export default function Dashboard(props){
 
         <div className="App">
         
-        <div >
+        <div>
           <Nav/>
           
+          
+
+          <div className="overflow-auto overflow-x-hidden   absolute ">
+          <div className='ml-52 mt-8 w-3/4 '>
+           
+            <h1 className='text-2xl font-medium'>{props.title}</h1>
+            <p className='mt-2'>Welcome to ApnaBlog. here you can create and Manage your Dashboard</p>
+            
+          </div>
+          </div>
           {/* profile wala main div */}
           <div className=" relative hover:cursor-pointer ">
           <div className="absolute top-1 right-1  " >
           {/* <  FaRegCircleUser className="cursor-pointer" size={30} /> */}
           
-            <button onClick={handleClick}  id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName" className=" ml-4 flex items-center text-sm pe-1 font-medium text-gray-900 rounded-full  hover:cursor-pointer hover:text-gray-600 focus:ring-gray-100" type="button">
+            <button onClick={handleClick}  id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName" className=" z-50 ml-4 flex items-center text-sm pe-1 font-medium text-gray-900 rounded-full  hover:cursor-pointer hover:text-gray-600 focus:ring-gray-100" type="button">
             <span class="sr-only">Open user menu</span>
               <div>
               <FaRegCircleUser  size={30} />
@@ -89,17 +100,18 @@ export default function Dashboard(props){
             {/* <!-- Dropdown menu --> */}
             
             
-            {isDropdown==true? <div id="dropdownAvatarName" class="z-10   bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
+            {isDropdown==true? <div id="dropdownAvatarName" class="z-52   bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
                 <div class="px-4 py-3 text-sm text-gray-900 ">
                   <div class="font-medium ">User Role</div>
                   <div class="truncate">name@user.com</div>
                 </div>
                 <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
                   <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100  ">Dashboard</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100  ">Posts</a>
                   </li>
                   <li>
-                    <a href="/Compose" class="block px-4 py-2 hover:bg-gray-100  ">Compose</a>
+                    {/* <a href="/Compose" class="block px-4 py-2 hover:bg-gray-100  ">Compose</a> */}
+                    <Link to="/Dashboard/compose" > <a href="" class="block px-4 py-2 hover:bg-gray-100">Compose</a></Link>
                   </li>
                   
                 </ul>
@@ -113,31 +125,60 @@ export default function Dashboard(props){
           </div>
           </div>
 
-          <div className="overflow-auto overflow-x-hidden   absolute ">
-          <div className='ml-40 mt-8 w-3/4 '>
-           
-            <h1 className='text-2xl font-medium'>{props.title}</h1>
-            <p className='mt-2'>Welcome to ApnaBlog. here you can create your own Blog</p>
-            
-          </div>
-
    
 
-
-          <div className=' ml-60 mt-10 mb-14 w-3/4 space-y-3'>
+          <div className=' ml-52 mt-20 mb-14 w-3/4 space-y-10 '>
+            
 
           {/* main content starts here */}
+
+
+        
+          {article.slice().reverse().map((data,i)=>
+
+        <div key={i} className=" hover:cursor-pointer flex flex-row  w-7/3 justify-between items-start p-2 border-solid border-2 border-gray-300 ">
+
+        <div  className=" "> 
+        <h1 className="h-8 truncate  font-semibold ">
+          {data.title}
+        </h1>
+        <p className="mt-2 line-clamp-2 ">
+          {data.description}
+        </p>
+        <p>{data.date}</p>
+        </div>
+
+         <div className="hover:cursor-default p-1 w-16 h-17 text-white text-center shrink-0 bg-purple-500">
+          <p class="text-sm">JUN</p>
+          <p class="text-3xl leading-none font-bold">05</p>
+          <p className="text-sm font-light" >2024</p>
+        </div>
+        </div>
+         )}
+
+
+
+
+       
           
 
 
-          </div>
-          </div>
+
+      </div>
+      
+    
+
+
+
+    
+        
           
 
           
         <footer className='w-screen bg-teal-400 h-12 fixed bottom-0 left-0 flex justify-center items-center '>
           <p className='flex justify-center '>Baljit Singh</p>
         </footer>
+
         </div>
           
 

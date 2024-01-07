@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import {Link } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 // import { redirect } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import store from "./store";
 import Nav from "./Nav";
+import Dashboard from "./Dashboard";
 
 
 
@@ -44,8 +45,10 @@ export default function Login(){
     
   
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const {isLogin} = useSelector(state=>state.custom);
+    const {isAuthenticated} = useSelector(state=>state.custom);
+    console.log(isAuthenticated);
   
     const loginBtn = ()=>{
         console.log("login wala call hua");
@@ -53,6 +56,8 @@ export default function Login(){
         type:"checkLogin",
         payload: true,
       })
+
+      
     };
     
   
@@ -73,15 +78,24 @@ export default function Login(){
                 console.log("login hua");
 
                 const authToken = res.data.token;
-                console.log(authToken);
+                // console.log(authToken);
                 
                 Swal.fire({
                     title:"wow!",
-                    text:"successfully Logged In",
+                    text:"successfully Logged In Redirecting in 5 sec.",
                     icon:"success"
                 });
 
+                // setTimeout(() => {
+                //     loginBtn();
+
+                //   }, 1000);
+
                 loginBtn();
+                //login kiya state change hua tab jake navigate kar do dashboard wale route pe with dashboard component
+                
+                navigate("/dashboard");
+
                 
                 
 
@@ -163,10 +177,8 @@ export default function Login(){
 
         }
         
-    
-
-
-    return (
+ 
+     return(
         <div>
 
         <Nav/>

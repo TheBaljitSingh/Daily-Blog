@@ -43,7 +43,7 @@ export default function Contact(props){
 
             <form  onSubmit={handleSubmit} >
                
-                <label for="website-admin" class="font-medium block mb-2 text-sm font-medium text-gray-900 ">Name</label>
+                <label for="website-admin" class="font-medium block mb-2 text-sm text-gray-900 ">Name</label>
                 <div class="flex mb-2">
                   <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 rounded-s-md ">
                     <svg class="w-4 h-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -68,7 +68,7 @@ export default function Contact(props){
                 <textarea id="message"  onChange={(e)=>{setMessage(e.target.value)}} rows="10" class=" bg-opacity-20 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Write your Descricption here..."></textarea>
                 
                 <div className=" relative mt-2">
-                <button type="submit" class="bg-slate-700-70  px-5 py-3 text-base font-medium text-center text-white rounded-lg  outline-none ">Send</button>
+                <button type="submit" class="bg-slate-700  px-5 py-3 text-base font-medium text-center text-white rounded-lg  outline-none ">Send</button>
 
                 </div>
 

@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const {allJournal} = require("../Controllers/allJournalController")
+const {Journal, userJournal} = require("../Controllers/JournalController")
 
-router.route("/allJournal").get(allJournal);
+router.route("/Journal").get(Journal);
+router.route("/userJournal").get(userJournal);
 
 
 

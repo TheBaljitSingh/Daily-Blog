@@ -13,6 +13,7 @@ exports.isAuthenticatedUser = async(req, res, next)=>{
 
     req.user =  await User.findById(decodedData.id);
     // ye req.user kya hai
+    console.log(decodedData);
 
     next();
 }

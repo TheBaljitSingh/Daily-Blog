@@ -1,19 +1,17 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 let initialState = {
-    isLogin:false,
+    isAuthenticated:false,
 }
 
 const customReducer = createReducer(initialState, (builder)=>{
     builder
     .addCase("checkLogin", (state,action)=>{
-        // state.isLogin = !state.isLogin();
-        state.isLogin = action.payload;
-        // console.log(state);
+        state.isAuthenticated = action.payload;
     })
     .addCase("checkLogout",(state,action)=>{
         // state.isLogin= !state.isLogin();
-        state.isLogin = action.payload;
+        state.isAuthenticated = action.payload;
 
     })
 })

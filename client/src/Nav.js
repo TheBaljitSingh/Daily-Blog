@@ -14,6 +14,8 @@ export default function Nav(){
   <ul className="font-semibold"><Link to={"/"}>HOME</Link></ul>
     <ul className="font-semibold"><Link to={"/about"} >ABOUT US</Link></ul>
     <ul className="font-semibold"><Link to={"/contact"}>CONTACT</Link></ul>
+    <ul className="font-semibold"><Link to={"/compose"}>COMPOSE</Link></ul>
+
   </div>
 </nav>
   )

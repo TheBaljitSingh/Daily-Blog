@@ -47,9 +47,8 @@ export default function Dashboard(props){
     }
   
     const fetctInfo = async ()=>{
-      await axios.get("api/Journal")
-            .then((response)=>console.log(response.data[0].date))
-            // setArticle(response.data)
+      await axios.get("api/userJournal")
+            .then((response)=>setArticle(response.data))
             .then(article.reverse()) 
     }
   
@@ -155,13 +154,6 @@ export default function Dashboard(props){
         </div>
         </div>
          )}
-
-
-
-
-       
-          
-
 
 
       </div>

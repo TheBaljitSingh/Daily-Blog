@@ -47,8 +47,7 @@ exports.loginUser = async (req, res, next)=>{
     }
 
   sendToken(user,200,res);
-  console.log(`printing the res email `+res.email);
-  console.log(`Printing the user `+user);
+  
 
 
 

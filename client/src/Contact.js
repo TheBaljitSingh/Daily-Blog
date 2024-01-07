@@ -35,11 +35,11 @@ export default function Contact(props){
         <div>
         <Nav/>
 
-          <div className='ml-60 mt-8 w-3/4'>
+          <div className='ml-52 mt-8 w-3/4'>
             <h1 className='text-2xl font-medium'>{props.title}</h1>
           </div>
 
-          <div className="ml-60 mt-8 w-3/4 ">
+          <div className="ml-52 mt-8 w-3/4 ">
 
             <form  onSubmit={handleSubmit} >
                

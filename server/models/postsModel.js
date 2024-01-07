@@ -14,12 +14,15 @@ const postsSchema = new mongoose.Schema({
         type: Date,
         default: Date.now(),
     },
-    user:{
-        id:{
-            type: mongoose.Schema.Types.ObjectId,
-            require: true
-        }
-    }
+    author: { 
+        type: mongoose.Schema.Types.ObjectId, ref: 'User',
+        required: true,
+     },
+     display:{
+        type: String,
+        default: "public"
+     }
+
 
 });
 

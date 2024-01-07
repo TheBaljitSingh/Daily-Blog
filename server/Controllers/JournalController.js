@@ -22,10 +22,14 @@ exports.Journal= async (req, res) =>{
 
 exports.userJournal = async (req, res) =>{
     try{
-        const userId = "6594f3103d758a9a43ca7c81"
-        const userData = await post.findById(userId)
+        const {user} = req; 
+        // console.log(_id);
 
-        return res.Json(userData);
+
+        const allUserData =   await post.find({author: user}).populate('author')
+
+
+        return res.json(allUserData);
 
     }
     catch(error){

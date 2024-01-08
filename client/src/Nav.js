@@ -12,7 +12,7 @@ export default function Nav(){
   </div>
   <div className='flex-1 flex justify-center ml-auto space-x-5 '>
   <ul className="font-semibold"><Link to={"/"}>HOME</Link></ul>
-  <ul className="font-semibold"><Link to={"/blogs"}>BLOGS</Link></ul>
+  <ul className="font-semibold"><Link to={"/Blog"}>BLOG</Link></ul>
 
     <ul className="font-semibold"><Link to={"/about"} >ABOUT US</Link></ul>
     <ul className="font-semibold"><Link to={"/contact"}>CONTACT</Link></ul>

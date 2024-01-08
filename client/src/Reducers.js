@@ -1,11 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-let initialState = {
+const initialState = {
     isAuthenticated:false,
-    isView:{
-        title: "",
-        description: "",
-    },
+    data:{
+        title: null,
+        description: null
+    }
 }
 
 const customReducer = createReducer(initialState, (builder)=>{
@@ -17,10 +17,12 @@ const customReducer = createReducer(initialState, (builder)=>{
         // state.isLogin= !state.isLogin();
         state.isAuthenticated = action.payload;
     })
-    .addCase("clickView", (state, action)=>{
-        state.isView.title = action.payload;
-        state.isView.description = action.payload
-    })
-})
+    .addCase("checkValue", (state,action)=>{
+        const {title, description } = action.payload;
+        state.data.title = title;
+        state.data.description = description;
+    });
+    
+});
 
 export default customReducer

@@ -12,6 +12,7 @@ export default function Dashboard(props){
 
     const [isDropdown, setisDropdown] = useState(true);
     const [article, setArticle] = useState([{}]);
+    // const [data, isData] = useState(false);
   
     // important! jab api call hoga logout ke liyea tab response ke hisab se loginBtn state ko update karna hai. tab jake page render hoga home page ke liyea.
     const dispatch = useDispatch();
@@ -42,15 +43,37 @@ export default function Dashboard(props){
     
     const handleClick = ()=>{
         setisDropdown(!isDropdown);
-
-  
     }
+
+    // const setView = ()=>{
+    //   isData(!data);
+    // }
   
     const fetctInfo = async ()=>{
       await axios.get("api/userJournal")
-            .then((response)=>setArticle(response.data))
-            .then(article.reverse()) 
+            .then(res=>{
+              if(res.status==200){
+                console.log("user ka blog hai");
+                console.log(res.data);
+                setArticle(res.data.allUserData);
+                // setView();
+              }
+              if(res.status==201){
+                // isData(false);
+                console.log("blog ka data nahi hai to block dikhna nahi chiyea");
+              }
+            // console.log(response.data[2].author),
+            //agar author ne kuch compose hi na kiya ho to kya yaha pr authr ka data fetch hoga [0] ue kar rahe hai
+            // console.log(response);
+
+            
+            // setArticle(response.data)
+          })
+            
     }
+
+    article.reverse()
+
   
   
     
@@ -58,6 +81,7 @@ export default function Dashboard(props){
     useEffect(()=>{
       fetctInfo();
       handleClick();
+      // setView();
       
     },[])
 
@@ -127,12 +151,15 @@ export default function Dashboard(props){
    
 
           <div className=' ml-52 mt-20 mb-14 w-3/4 space-y-10 '>
+
+            <h2 className="text-xl font-medium bg-gray-600 hover:bg-gray-700 rounded-sm text-white w-28 p-2 hover:cursor-pointer" >Your Posts</h2>
             
 
           {/* main content starts here */}
 
 
-        
+        {/* {isData == true?   */}
+          {/* <div>      */}
           {article.slice().reverse().map((data,i)=>
 
         <div key={i} className=" hover:cursor-pointer flex flex-row  w-7/3 justify-between items-start p-2 border-solid border-2 border-gray-300 ">
@@ -148,12 +175,14 @@ export default function Dashboard(props){
         </div>
 
          <div className="hover:cursor-default p-1 w-16 h-17 text-white text-center shrink-0 bg-purple-500">
-          <p class="text-sm">JUN</p>
-          <p class="text-3xl leading-none font-bold">05</p>
+          <p class="text-sm">JAN</p>
+          <p class="text-3xl leading-none font-bold">09</p>
           <p className="text-sm font-light" >2024</p>
         </div>
         </div>
-         )}
+         )} 
+         {/* </div>:
+         null} */}
 
 
       </div>

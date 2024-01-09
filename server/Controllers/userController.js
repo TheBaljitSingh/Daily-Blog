@@ -5,6 +5,8 @@ const sendToken = require("../utils/jwtToken");
 
 //Register a User
 
+
+
 exports.registerUser = async(req,res,next)=>{
     const {name, email, password} = req.body;
 
@@ -15,6 +17,8 @@ exports.registerUser = async(req,res,next)=>{
             url:"profileUrl"
         }
     });
+
+
 
     sendToken(user,201,res);
 

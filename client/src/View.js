@@ -38,11 +38,14 @@ function View(props) {
         <Nav/>
 
           <div className='ml-52 mt-10 w-3/4'>
-            <h1 className='p-2  text-2xl font-semibold border-s-4  border-black'>{props.title}</h1>
+            <h1 className='p-2  text-2xl font-semibold text-center  border-black'>{props.title}</h1>
 
           </div>
+          <div>
+          <hr class="w-48 h-1 mx-auto my-4 bg-gray-400 border-0 rounded"/>
 
-          <div className=" p-2 ml-52 mr-48 mt-8 font-normal text-xl ">
+          </div>
+          <div className=" p-2 ml-52 mr-48  font-normal text-xl ">
             {props.description}
           </div>
 

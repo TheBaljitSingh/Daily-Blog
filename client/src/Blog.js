@@ -68,7 +68,7 @@ function Blog(props) {
           <div className='ml-52 mt-8 w-3/2  '>
            
             <h1 className='text-2xl font-medium'>{props.title}</h1>
-            <p className='mt-2'>Welcome to ApnaBlog. Here you can Read Blogs which is published by the <span className='font-medium' >Users</span> on Apna Blog</p>
+            <p className='mt-2'>Welcome to ApnaBlog. Here you can Read Blogs which is publically published by the <span className='font-medium' >Users</span> on Apna Blog</p>
             <p></p>
             
           </div>
@@ -85,21 +85,21 @@ function Blog(props) {
           
             {article.slice().reverse().map((data,i)=>
           
-          
-          <div key={i} onClick={(e)=>{setData(data.title, data.description)}}  className="hover:cursor-default mt-2  flex flex-row  w-7/3 justify-between items-start p-2 border-solid border-2 border-gray-300 ">
+          <Link className='text-blue-600 hover:cursor-pointer' to={{ pathname:"/posts", search: ("?Title="+data.title).replace(/\s\+/g, '-').toLowerCase()}}> 
+          <div key={i} onClick={(e)=>{setData(data.title, data.description)}}  className="hover:cursor-pointer text-black mt-2  flex flex-row  w-7/3 justify-between items-start p-2 border-solid border-2 border-gray-300 ">
   
           <div  className=" h-12 "> 
           <h1  className="h-8  truncate  font-semibold text-lg">
             {data.title}
           </h1>
           <div className='flex-row  '>
-          <p className=" line-clamp-1 text-xl">
+          <p className=" line-clamp-1 ">
             {data.description}  
           </p>
           {/* {data.description.length > 110 && <p>lamba hai</p>} */}
 {/* 110 se jyada ho tab  */}
               
-         <p className=''><Link className='text-blue-600 hover:cursor-pointer' to={{ pathname:"/posts", search: ("?Title="+data.title).replace(/\s\+/g, '-').toLowerCase()}}>Read more... </Link></p>
+         <p className=''></p>
           </div>
 
           
@@ -112,6 +112,7 @@ function Blog(props) {
             <p className="text-sm font-light" >2024</p>
           </div>
           </div>
+          </Link>
          
            )}
   

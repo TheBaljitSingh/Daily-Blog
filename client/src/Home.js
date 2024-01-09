@@ -37,7 +37,7 @@ export default function Home() {
           </div>
 
             <div className="mr-72 mt-28">
-              <img  className=" opacity-80 rounded-xl " width={500} src="https://thesavvycouple.com/wp-content/uploads/2018/09/Best-Stock-Photo-Sites.jpg" alt="" />
+              <img  className=" opacity-90 rounded-xl " width={500} src="https://thesavvycouple.com/wp-content/uploads/2018/09/Best-Stock-Photo-Sites.jpg" alt="" />
             </div>
 
         </div>
